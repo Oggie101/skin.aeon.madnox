@@ -2433,6 +2433,14 @@
 		<value condition="Container.Content(episodes)">$INFO[ListItem.Art(tvshow.poster)]</value>
 		<value>$INFO[ListItem.Icon]</value>
 	</variable>
+	<variable name="ListPosterBackupVar">
+		<value condition="Stringcompare(ListItem.label,..)">DefaultFolderBack.png</value>
+		<value condition="Container.Content(genres)">$INFO[ListItem.Label,special://skin/extras/genre/video/icons/,.jpg]</value>
+		<value condition="!IsEmpty(ListItem.Art(poster))">$INFO[ListItem.Art(poster)]</value>
+		<value condition="Container.Content(episodes)">$INFO[ListItem.Art(tvshow.poster)]</value>
+		<value>$INFO[ListItem.Icon]</value>
+	</variable>
+	
 	<variable name="BannerVar">
 		<value condition="!IsEmpty(ListItem.Art(banner))">$INFO[ListItem.Art(banner)]</value>
 		<value condition="!IsEmpty(ListItem.Art(tvshow.banner))">$INFO[ListItem.Art(tvshow.banner)]</value>
@@ -3812,6 +3820,14 @@
 		<value condition="Skin.HasSetting(DisableRatingColorFlag)">-</value>
 		<value>flags/rating/</value>
 	</variable>
+	<variable name="ColorFlagsTVRatingextended">
+		<value condition="[Skin.HasSetting(RatingColorFlag) + Skin.HasSetting(ExtendedTVRatingVideoinfo)] + !Skin.HasSetting(DisableRatingColorFlag)">$INFO[Skin.String(ColorFlagsPath)]rating/info/</value>
+		<value condition="[Skin.HasSetting(RatingColorFlagreloaded) + Skin.HasSetting(ExtendedRatingVideoinfo)] + !Skin.HasSetting(DisableRatingColorFlag)">$INFO[Skin.String(ReloadedFlagsPath)]rating/info/</value>
+		<value condition="Skin.HasSetting(RatingColorFlag) + !Skin.HasSetting(DisableRatingColorFlag)">$INFO[Skin.String(ColorFlagsPath)]rating/</value>
+		<value condition="Skin.HasSetting(RatingColorFlagreloaded) + !Skin.HasSetting(DisableRatingColorFlag)">$INFO[Skin.String(ReloadedFlagsPath)]rating/</value>
+		<value condition="Skin.HasSetting(DisableRatingColorFlag)">-</value>
+		<value>flags/rating/</value>
+	</variable>
 	<variable name="ColorFlagsResolution">
 		<value condition="Skin.HasSetting(ResolutionColorFlag) + !Skin.HasSetting(DisableResolutionColorFlag)">$INFO[Skin.String(ColorFlagsPath)]</value>
 		<value condition="Skin.HasSetting(ResolutionColorFlagreloaded) + !Skin.HasSetting(DisableResolutionColorFlag)">$INFO[Skin.String(ReloadedFlagsPath)]</value>
@@ -4279,6 +4295,7 @@
     </variable>
 	<variable name="KodiFlix.Label">
 		<value condition="ListItem.IsPlaying">[COLOR=$VAR[FocusTextureColorVar]]$INFO[ListItem.Label][/COLOR]</value>
+		<value condition="Container.Content(episodes)">$INFO[ListItem.Title]</value>
 		<value>$INFO[ListItem.Label]</value>
 	</variable>
 	<variable name="KodiFlixSeasonLandscapeSettingsVar">
@@ -4337,5 +4354,11 @@
 		<value condition="ControlGroup(9001).HasFocus(550)">[COLOR $VAR[FocusTextureColorVar]]$ADDON[script.extendedinfo 32122][/COLOR] $INFO[Container(550).NumItems,(,)]</value>
 		<value condition="ControlGroup(9001).HasFocus(650)">[COLOR $VAR[FocusTextureColorVar]]$ADDON[script.extendedinfo 32123][/COLOR] $INFO[Container(650).NumItems,(,)]</value>
 		<value condition="ControlGroup(9001).HasFocus(750)">[COLOR $VAR[FocusTextureColorVar]]$LOCALIZE[20445][/COLOR] $INFO[Container(750).NumItems,(,)]</value>
+	</variable>
+	<variable name="MusicPlotVar">
+		<value condition="Container.Content(albums) + !IsEmpty(ListItem.Property(Album_Description))">$INFO[ListItem.Property(Album_Description)]</value>
+		<value condition="Container.Content(albums)">$LOCALIZE[414]</value>
+		<value condition="Container.Content(artists) + !IsEmpty(ListItem.Property(Artist_Description))">$INFO[ListItem.Property(Artist_Description)]</value>
+		<value condition="Container.Content(artists)">$LOCALIZE[547]</value>
 	</variable>
 </includes>
